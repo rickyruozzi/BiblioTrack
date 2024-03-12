@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+<!-- Inizio Codice html -->
 <html>
     <head>
         <link type='text/css' rel="stylesheet" href="feedback.css">
@@ -19,6 +20,7 @@
         </div>
         </div>
         </header>
+        <!-- richiesta dati da inserire nel db tramite codice HTML -->
         <div class = form>
             <div class = form_content>
                 <div id = div_dati_feedback>
@@ -51,26 +53,27 @@
 </html>
 <?php
 
-
 if(isset($_POST["submit"])){
+    // Dichiarazione variabili da inserire nel DB.
     $voto = $_POST["voto"];
     $feedback = $_POST["feedback"]
     $id_utente = $_POST["id_utente"]
     $id_libro = $_POST["id_libro"]
-    
+    // Dichiarazione informazioni per connessione al DB.
     $server = "localhost";
     $user = "root";
     $password = "";
     $db_nome = "bibliotrack";
-
+    // Dichiarazione stringa di connessione al database.
     $conn = new mysqli($server, $user, $password, $db_nome);
-    
+    // controllo sulla connessione.
     if($conn)
 	    echo("Connessione eseguita");
     else
 	    die("Connessione non eseguita");
-    
+    // dichiarazione query d'inserimento dei dati.
     $query = "INSERT INTO feedback_libri VALUES(0,'$voto','$feedback','$id_utente','$id_libro')";
+    // avvio della query per inserire dati nel DB.
     $conn->query($query);
 }
 ?>

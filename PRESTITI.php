@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+      <!-- Inizio Codice html -->
     <head>
         <link type='text/css' rel="stylesheet" href="prestiti.css">
         <title>Modulo Compilazione Prestiti:</title>
@@ -20,6 +21,7 @@
                 </div>
             </div>
         </header>
+        <!-- richiesta dati da inserire nel db tramite codice HTML -->
         <div class = form>
             <div class = form_content>
                 <div id = div_dati_prestiti>
@@ -51,22 +53,25 @@
 <?php
 
 if(isset($_POST["submit"])){
-    
+    // Dichiarazione variabili da inserire nel DB.
     $id_utente = $_POST["id_utente"];
     $id_libro = $_POST["id_libro"];
     $scadenza_prestito = $_POST["scadenza_prestito"];
-   
+    // Dichiarazione informazioni per connessione al DB.
     $server = "localhost";
     $user = "root";
     $password = "";
     $db_nome = "bibliotrack";
-
+    // Dichiarazione stringa di connessione al database.
     $conn = new mysqli($server, $user, $password, $db_nome);
+    // controllo sulla connessione.
     if($conn)
 	    echo("Connessione eseguita");
     else
 	    die("Connessione non eseguita");
+    // dichiarazione query d'inserimento dei dati.
     $query = "INSERT INTO prestiti VALUES(0,'$id_utente','$id_libro','$scadenza_prestito')";
+    // avvio della query per inserire dati nel DB.
     $conn->query($query);
 }
 ?>

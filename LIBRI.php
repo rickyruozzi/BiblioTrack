@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <!-- Inizio Codice html -->
     <head>
         <link type='text/css' rel="stylesheet" href="libri.css">
         <title>Modulo Compilazione Libri:</title>
@@ -17,6 +18,7 @@
                 </div>
             </div>
         </header>
+         <!-- richiesta dati da inserire nel db tramite codice HTML -->
         <div class = form>
             <div class = form_content>
                 <div id = div_dati_libro>
@@ -55,26 +57,28 @@
 
 
 if(isset($_POST["submit"])){
-
+    // Dichiarazione variabili da inserire nel DB.
     $titolo = $_POST["titolo"];
     $autore = $_POST["autore"];
     $casa_editrice = $_POST["casa_editrice"];
     $anno_pubblicazione = $_POST["anno_pubblicazione"];
     $collana = $_POST["collana"];
     $genere = $_POST["genere"];
-    
-
+    // Dichiarazione informazioni per connessione al DB.
     $server = "localhost";
     $user = "root";
     $password = "";
     $db_nome = "bibliotrack";
-
+    // Dichiarazione stringa di connessione al database.
     $conn = new mysqli($server, $user, $password, $db_nome);
+    // controllo sulla connessione.
     if($conn)
 	    echo("Connessione eseguita");
     else
 	    die("Connessione non eseguita");
+    // dichiarazione query d'inserimento dei dati.
     $query = "INSERT INTO libri VALUES(0,'$titolo','$autore','$casa_editrice','$anno_pubblicazione','$collana','$genere')";
+    // avvio della query per inserire dati nel DB.
     $conn->query($query);
 }
 ?>

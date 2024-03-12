@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+<!-- Inizio codice html -->
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BiblioTrack</title>
     <link rel="icon" href="LogoBiblioteca.png" type="image/x-icon">
+    <!-- dichiarazione di foglio di stile direttamente nell'HTML. -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -86,6 +88,7 @@
           
     </style>
 </head>
+<!-- inzio body dell'HTML -->
 <body>
     <header>
         <h1>BiblioTrack</h1>
@@ -113,6 +116,7 @@
         <button id="Login">login</button>
         <button id="Registrati">registrati</button>
     </div>
+    <!-- Inizio piccolo Script per la registraziones -->
     <script>
         let registrati=document.getElementById('Registrati');
         registrati.onclick=function(e){

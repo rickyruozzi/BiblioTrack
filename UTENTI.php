@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+     <!-- Inizio Codice html -->
     <head>
         <link type='text/css' rel="stylesheet" href="utenti.css">
         <title>Modulo Compilazione Utenti:</title>
@@ -24,7 +25,7 @@
                     <h1 id = dati_utente>Dati Utenti</h1>
                 </div>
             <form action="utenti.php" method="post">
-
+            <!-- richiesta dati da inserire nel db tramite codice HTML -->
                 <div id = form_content>
                     <label for="nome" >Nome: </label>
                     <input type="text" id="nome" maxlength="40" name = "nome">
@@ -55,25 +56,27 @@
 
 
 if(isset($_POST["submit"])){
-    
+    // Dichiarazione variabili da inserire nel DB.
     $nome = $_POST["nome"];
     $cognome = $_POST["cognome"];
     $email = $_POST["mail"];
     $telefono = $_POST["telefono"];
     $password = $_POST["password"];
-   
+    // Dichiarazione informazioni per connessione al DB.
     $server = "localhost";
     $user = "root";
     $password = "";
     $db_nome = "bibliotrack";
-
+    // Dichiarazione stringa di connessione al database.
     $conn = new mysqli($server, $user, $password, $db_nome);
+    // controllo sulla connessione.
     if($conn)
 	    echo("Connessione eseguita");
     else
 	    die("Connessione non eseguita");
-    
+    // dichiarazione query d'inserimento dei dati.
     $query = "INSERT INTO utenti VALUES(0,'$nome','$cognome','$email','$telefono','$password')";
+    // avvio della query per inserire dati nel DB.
     $conn->query($query);
 }
 ?>
