@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $username, $hashedPassword, $email);
     if ($stmt->execute()) {
-        echo 'Registrazione effettuata';
+        header("Location: index.html");
     } else {
         echo 'Errore durante la registrazione';
     }

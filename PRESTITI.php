@@ -1,77 +1,82 @@
 <!DOCTYPE html>
-<html>
-      <!-- Inizio Codice html -->
-    <head>
-        <link type='text/css' rel="stylesheet" href="prestiti.css">
-        <title>Modulo Compilazione Prestiti:</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-        
-	</head>
-
-	<body>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiblioTrack</title>
+    <link rel="icon" href="LogoBiblioteca.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #710c0c;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        header h3 {
+            margin-top: 5px;
+            font-size: 18px;
+        }
+        nav {
+            background-color: #f90505;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #500606;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .catalog-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .catalog-section h2 {
+            margin-top: 0;
+            color: #004d40;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
     <header>
-            <div class="griglia">
-                <div class="contenuto_griglia">
-                    <ul>
-                        <a href="HOMEPAGE.php"><li>HOMEPAGE</li></a>
-                        
-                    </ul>
-                </div>
-            </div>
-        </header>
-        <!-- richiesta dati da inserire nel db tramite codice HTML -->
-        <div class = form>
-            <div class = form_content>
-                <div id = div_dati_prestiti>
-                    <h1 id = dati_prestiti>Dati Prestiti</h1>
-                </div>
-            <form action="prestiti.php" method="post">
-
-                <div id = form_content>
-                    <label for="id_utente" >Id Utente: </label>
-                    <input type="text" id="id_utente" maxlength="40" name = "id_utente">
-
-                    <label for="id_libro" >Id Libro: </label>
-                    <input type="text" id="autore" maxlength="20" name = "autore">
-
-                    <label for="scadenza_prestito" >scadenza del prestito: </label>
-                    <input type="text" id="scadenza_prestito" maxlength="20" name = "scadenza_prestito">
-                </div>      
-
-                <div id = buttons>
-                    <button type="submit" name="submit">Invia</button>
-                    <button type="reset">Reset</button>
-                </div>
-            </form>
-            </div>
-        </div>
-	</body>
-</html>
-
-<?php
-
-if(isset($_POST["submit"])){
-    // Dichiarazione variabili da inserire nel DB.
-    $id_utente = $_POST["id_utente"];
-    $id_libro = $_POST["id_libro"];
-    $scadenza_prestito = $_POST["scadenza_prestito"];
-    // Dichiarazione informazioni per connessione al DB.
-    $server = "localhost";
-    $user = "root";
-    $password = "";
-    $db_nome = "bibliotrack";
-    // Dichiarazione stringa di connessione al database.
-    $conn = new mysqli($server, $user, $password, $db_nome);
-    // controllo sulla connessione.
-    if($conn)
-	    echo("Connessione eseguita");
-    else
-	    die("Connessione non eseguita");
-    // dichiarazione query d'inserimento dei dati.
-    $query = "INSERT INTO prestiti VALUES(0,'$id_utente','$id_libro','$scadenza_prestito')";
-    // avvio della query per inserire dati nel DB.
-    $conn->query($query);
-}
-?>
+        <h1>BiblioTrack</h1>
+        <h3>Il luogo ideale per esplorare nuovi mondi attraverso la lettura</h3>
+    </header>
+</body>

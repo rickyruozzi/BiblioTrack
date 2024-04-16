@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 12, 2024 alle 08:55
+-- Creato il: Apr 16, 2024 alle 09:18
 -- Versione del server: 10.4.28-MariaDB
--- Versione PHP: 8.2.4
+-- Versione PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,7 +58,8 @@ CREATE TABLE `libri` (
 INSERT INTO `libri` (`PK_Id_libro`, `Titolo`, `Autore`, `Casa_editrice`, `Anno_pubblicazione`, `Collana`, `Genere`) VALUES
 (1, 'Il mastino dei Baskerville', 'Arthur Conan Doyle', 'Feltrinelli', '1902', 'GrandiGialli', 'Giallo'),
 (2, 'Il grande Gatsby', 'Francis Scott Fitzg', 'Feltrinelli', '1925', 'GrandiClassici', 'Tragedia'),
-(3, 'La bibbia', '', 'Feltrinelli', '0000', 'Religione', 'Teologia');
+(3, 'La bibbia', '', 'Feltrinelli', '0000', 'Religione', 'Teologia'),
+(6, 'Delitto e castigo', 'Fëdor Dostoevskij ', 'Feltrinelli', '0000', 'Classici Russi', 'Narrativa psicologica');
 
 -- --------------------------------------------------------
 
@@ -71,8 +72,18 @@ CREATE TABLE `prestiti` (
   `FK_Id_utente` int(11) NOT NULL,
   `FK_Id_libro` int(11) NOT NULL,
   `Scadenza_prestito` date NOT NULL,
-  `Inizio_prestito` date NOT NULL
+  `inizio_prestito` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `prestiti`
+--
+
+INSERT INTO `prestiti` (`PK_Id_prestito`, `FK_Id_utente`, `FK_Id_libro`, `Scadenza_prestito`, `inizio_prestito`) VALUES
+(14, 1, 3, '0000-00-00', NULL),
+(19, 1, 3, '0000-00-00', NULL),
+(20, 1, 1, '0000-00-00', NULL),
+(21, 1, 2, '0000-00-00', NULL);
 
 -- --------------------------------------------------------
 
@@ -92,7 +103,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`username`, `password`, `email`) VALUES
 ('admin', '$2y$10$9/Psjkv2jSwRS61rziHSXuLRik/7uMOZprWTGtjRMp73xJ9FzgnIW', 'admin@gmail.com'),
+('angela', '$2y$10$4cn419TLs0O5aBP/PQ3I9OQXsxNvXkn0w.tKSYO6K48JTuuqW2j3a', 'angela.tirabassi2005@libero.it'),
 ('angelatirabassi', '$2y$10$u0YWKFV54kUrDTyrQymyT.hA4IbLI1GmFP5zHUTD0HT.x6oZUt6kC', 'angelatirabassi05@gmail.com'),
+('gianni', '$2y$10$VmTJYPKWVvYsJolw53qtHOE8rrn.ApzAh7DEez3vqTChr2VGTBkRq', 'wompwomp@libero.it'),
 ('MAtti04', '$2y$10$08F7sdGe8zoz/ROOAZMo6e/wmB.HywPyjXmuTUWjliUZ5zZd46rdi', 'scarpam204@gmail.com'),
 ('ometto', '$2y$10$byj31OEjhOw6ZgAwqDAM1.xYc/RpRDRsK3pVE1j/PKP9hKZs.2ZYC', 'iacopo.ferrari@einaudicorreggi');
 
@@ -108,17 +121,15 @@ CREATE TABLE `utenti` (
   `Cognome` varchar(50) NOT NULL,
   `Mail` varchar(100) DEFAULT NULL,
   `Telefono` varchar(10) DEFAULT NULL,
-  `Password` varchar(255) NOT NULL,
-  `FK_User` varchar(11) DEFAULT NULL
+  `fk_user` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `utenti`
 --
 
-INSERT INTO `utenti` (`PK_Id_utente`, `Nome`, `Cognome`, `Mail`, `Telefono`, `Password`, `FK_User`) VALUES
-(1, 'Riccardo', 'Ruozzi', 'ruozziriccardo4@gmail.com', '3389813841', 'ciaoriki', NULL),
-(2, 'Mattia', 'Scarpa', 'scarpam204@gmailcom', '3334856127', 'ciaomatti', 'MAtti04');
+INSERT INTO `utenti` (`PK_Id_utente`, `Nome`, `Cognome`, `Mail`, `Telefono`, `fk_user`) VALUES
+(1, 'Riccardo', 'Ruozzi', 'ruozziriccardo4@gmail.com', '3389813841', 'admin');
 
 --
 -- Indici per le tabelle scaricate
@@ -157,7 +168,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `utenti`
   ADD PRIMARY KEY (`PK_Id_utente`),
-  ADD KEY `Fk_Utenti` (`FK_User`);
+  ADD KEY `fk_su_username` (`fk_user`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -167,19 +178,19 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `libri`
 --
 ALTER TABLE `libri`
-  MODIFY `PK_Id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PK_Id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `prestiti`
 --
 ALTER TABLE `prestiti`
-  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `PK_Id_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `PK_Id_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Limiti per le tabelle scaricate
@@ -203,7 +214,7 @@ ALTER TABLE `prestiti`
 -- Limiti per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  ADD CONSTRAINT `Fk_Utenti` FOREIGN KEY (`FK_User`) REFERENCES `users` (`username`);
+  ADD CONSTRAINT `fk_su_username` FOREIGN KEY (`fk_user`) REFERENCES `users` (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

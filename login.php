@@ -95,7 +95,7 @@
             // Verifica della password
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['username'] = $username;
-                header("Location: prossima_pagina.html");
+                header("Location: zona_prestiti.php");
                 exit();
             } else {
                 echo "Accesso negato. Nome utente o password errati.";

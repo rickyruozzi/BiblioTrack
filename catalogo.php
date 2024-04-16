@@ -81,9 +81,9 @@
     </header>
     <nav>
         <a href="index.html">Home</a>
-        <a href="catalogo.html">Catalogo</a>
+        <a href="catalogo.php">Catalogo</a>
         <a href="prestiti.html">Prestiti</a>
-        <a href="tendenze.html">tendenze</a>
+        <a href="tendenze.html">Tendenze</a>
     </nav>
     <div class="container">
         <div class="catalog-section">
