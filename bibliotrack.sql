@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 16, 2024 alle 09:18
+-- Creato il: Apr 16, 2024 alle 09:33
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.0.28
 
@@ -46,7 +46,7 @@ CREATE TABLE `libri` (
   `Titolo` varchar(100) NOT NULL,
   `Autore` varchar(50) NOT NULL,
   `Casa_editrice` varchar(50) NOT NULL,
-  `Anno_pubblicazione` year(4) DEFAULT NULL,
+  `Anno_pubblicazione` int(255) DEFAULT NULL,
   `Collana` varchar(50) DEFAULT NULL,
   `Genere` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -56,10 +56,10 @@ CREATE TABLE `libri` (
 --
 
 INSERT INTO `libri` (`PK_Id_libro`, `Titolo`, `Autore`, `Casa_editrice`, `Anno_pubblicazione`, `Collana`, `Genere`) VALUES
-(1, 'Il mastino dei Baskerville', 'Arthur Conan Doyle', 'Feltrinelli', '1902', 'GrandiGialli', 'Giallo'),
-(2, 'Il grande Gatsby', 'Francis Scott Fitzg', 'Feltrinelli', '1925', 'GrandiClassici', 'Tragedia'),
-(3, 'La bibbia', '', 'Feltrinelli', '0000', 'Religione', 'Teologia'),
-(6, 'Delitto e castigo', 'Fëdor Dostoevskij ', 'Feltrinelli', '0000', 'Classici Russi', 'Narrativa psicologica');
+(1, 'Il mastino dei Baskerville', 'Arthur Conan Doyle', 'Feltrinelli', 1902, 'GrandiGialli', 'Giallo'),
+(2, 'Il grande Gatsby', 'Francis Scott Fitzg', 'Feltrinelli', 1925, 'GrandiClassici', 'Tragedia'),
+(3, 'La bibbia', '', 'Feltrinelli', 0, 'Religione', 'Teologia'),
+(6, 'Delitto e castigo', 'Fëdor Dostoevskij ', 'Feltrinelli', 1866, 'Classici Russi', 'Narrativa psicologica');
 
 -- --------------------------------------------------------
 
