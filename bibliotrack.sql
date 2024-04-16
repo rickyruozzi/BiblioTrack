@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 16, 2024 alle 09:33
+-- Creato il: Apr 16, 2024 alle 09:53
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.0.28
 
@@ -88,6 +88,24 @@ INSERT INTO `prestiti` (`PK_Id_prestito`, `FK_Id_utente`, `FK_Id_libro`, `Scaden
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `superusers`
+--
+
+CREATE TABLE `superusers` (
+  `password_superuser` varchar(250) DEFAULT NULL,
+  `username` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `superusers`
+--
+
+INSERT INTO `superusers` (`password_superuser`, `username`) VALUES
+('$2y$10$uRZe2ti6QoBUoY0Ekc1CJOGYUxMzyH56SzYqdimul0wUH9HQVSNcC', 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `users`
 --
 
@@ -158,6 +176,12 @@ ALTER TABLE `prestiti`
   ADD KEY `FK_Id_libro` (`FK_Id_libro`);
 
 --
+-- Indici per le tabelle `superusers`
+--
+ALTER TABLE `superusers`
+  ADD KEY `fk_superuser` (`username`);
+
+--
 -- Indici per le tabelle `users`
 --
 ALTER TABLE `users`
@@ -209,6 +233,12 @@ ALTER TABLE `feedback_libri`
 ALTER TABLE `prestiti`
   ADD CONSTRAINT `prestiti_ibfk_1` FOREIGN KEY (`FK_Id_utente`) REFERENCES `utenti` (`PK_Id_utente`),
   ADD CONSTRAINT `prestiti_ibfk_2` FOREIGN KEY (`FK_Id_libro`) REFERENCES `libri` (`PK_Id_libro`);
+
+--
+-- Limiti per la tabella `superusers`
+--
+ALTER TABLE `superusers`
+  ADD CONSTRAINT `fk_superuser` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 
 --
 -- Limiti per la tabella `utenti`
