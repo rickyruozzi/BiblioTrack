@@ -82,7 +82,6 @@
             transition: 200ms;
         }
 
-        /* Hamburger Icon */
         .hamburger-icon {
             display: none;
         }
@@ -90,36 +89,6 @@
         .hamburger-icon img {
             width: 30px;
             cursor: pointer;
-        }
-
-        /* Menu Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                width: 100%;
-                background-color: #f90505;
-                text-align: center;
-                position: absolute;
-                top: 50px;
-                left: 0;
-                z-index: 1;
-            }
-
-            nav ul.active {
-                display: block;
-            }
-
-            .menu li {
-                margin: 10px 0;
-            }
-
-            .hamburger-icon {
-                display: block;
-                position: absolute;
-                top: 15px;
-                right: 20px;
-                z-index: 2;
-            }
         }
     </style>
 </head>
@@ -133,11 +102,6 @@
         <a href="catalogo.php">Catalogo</a>
         <a href="prestiti.html">Prestiti</a>
         <a href="tendenze.html">Tendenze</a>
-
-        <!-- Icona per il Menu Hamburger -->
-        <div class="hamburger-icon">
-            <img src="icons8-menu-50.png" alt="Menu Icon">
-        </div>
     </nav>
     <div class="container">
         <section class="section">
@@ -164,14 +128,7 @@
         let login = document.getElementById('Login');
         login.onclick = function(e) {
             window.location.href = 'login.php';
-        }
-
-        const hamburgerIcon = document.querySelector('.hamburger-icon');
-        const menu = document.querySelector('nav ul');
-
-        hamburgerIcon.addEventListener('click', () => {
-            menu.classList.toggle('active');
-        });
+        }     
     </script>
 </body>
 </html>
