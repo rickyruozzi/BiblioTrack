@@ -51,6 +51,11 @@
             background-color: #ff5252;
             color: white;
         }
+
+        .abilitation-button {
+            background-color: rgb(100,100,100);
+            color: white;
+        }
         
         button:hover {
             background-color: #555;
@@ -71,17 +76,20 @@
             }
             ?>
         </h1>
+        <h7>Ricorda di abilitare l'utente per prendere in prestito i libri!</h7>
     </div>
     <div class="container">
         <button id='mieiPrestiti' class="miei-prestiti">Mostra prestiti</button>
         <button id="Prenota" class="prenotation-button">Prenota/cancella un libro</button>
         <button id='mostra' class="cancel-button">mostra libri</button>
+        <button id='abilita' class="abilitation-button">abilita utente</button>
     </div>
 </body>
 <script>
     let miei=document.getElementById('mieiPrestiti');
     let prenota=document.getElementById('Prenota');
     let mostra=document.getElementById('mostra');
+    let abilita=document.getElementById('abilita');
     prenota.onclick=function(){
         window.location.href='gestore.php?action=prenota'
     }
@@ -90,6 +98,9 @@
     }
     miei.onclick=function(){
         window.location.href='gestore.php?action=visualizza'
+    }
+    abilita.onclick=function(){
+        window.location.href='abilita_utente.php'
     }
 </script>
 </html>
