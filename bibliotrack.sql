@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 23, 2024 alle 09:47
+-- Creato il: Apr 30, 2024 alle 08:27
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.0.28
 
@@ -59,7 +59,9 @@ INSERT INTO `libri` (`PK_Id_libro`, `Titolo`, `Autore`, `Casa_editrice`, `Anno_p
 (1, 'Il mastino dei Baskerville', 'Arthur Conan Doyle', 'Feltrinelli', 1902, 'GrandiGialli', 'Giallo'),
 (2, 'Il grande Gatsby', 'Francis Scott Fitzg', 'Feltrinelli', 1925, 'GrandiClassici', 'Tragedia'),
 (3, 'La bibbia', '', 'Feltrinelli', 33, 'Religione', 'Teologia'),
-(6, 'Delitto e castigo', 'Fëdor Dostoevskij ', 'Feltrinelli', 1866, 'Classici Russi', 'Narrativa psicologica');
+(6, 'Delitto e castigo', 'Fëdor Dostoevskij ', 'Feltrinelli', 1866, 'Classici Russi', 'Narrativa psicologica'),
+(10, 'Il visconte dimezzato', 'Italo Calvino', 'Mondadori', 1952, 'Libri Fantastici', 'commedia'),
+(11, 'Il cavaliere inesistente', 'Italo Calvino', 'Mondadori', 1959, 'Libri Fantastici', 'commedia');
 
 -- --------------------------------------------------------
 
@@ -83,7 +85,10 @@ INSERT INTO `prestiti` (`PK_Id_prestito`, `FK_Id_utente`, `FK_Id_libro`, `Scaden
 (19, 1, 3, '2025-01-01', NULL),
 (20, 1, 1, '0000-00-00', NULL),
 (21, 1, 2, '0000-00-00', NULL),
-(22, 1, 1, '2024-10-10', '2024-10-10');
+(22, 1, 1, '2024-10-10', '2024-10-10'),
+(25, 1, 3, '2024-01-01', '2023-01-01'),
+(26, 1, 3, '2024-01-01', '2023-01-01'),
+(27, 1, 11, '0000-00-00', NULL);
 
 -- --------------------------------------------------------
 
@@ -124,10 +129,9 @@ INSERT INTO `users` (`username`, `password`, `email`) VALUES
 ('angela', '$2y$10$4cn419TLs0O5aBP/PQ3I9OQXsxNvXkn0w.tKSYO6K48JTuuqW2j3a', 'angela.tirabassi2005@libero.it'),
 ('angelatirabassi', '$2y$10$u0YWKFV54kUrDTyrQymyT.hA4IbLI1GmFP5zHUTD0HT.x6oZUt6kC', 'angelatirabassi05@gmail.com'),
 ('ciao', '$2y$10$L.lxM9IuP6PZCVAbrmChTumoIpz7eedwEyfrl29dxdBrAVV5RN.7O', 'ciao@gmail.com'),
-('gianni', '$2y$10$VmTJYPKWVvYsJolw53qtHOE8rrn.ApzAh7DEez3vqTChr2VGTBkRq', 'wompwomp@libero.it'),
 ('MAtti04', '$2y$10$08F7sdGe8zoz/ROOAZMo6e/wmB.HywPyjXmuTUWjliUZ5zZd46rdi', 'scarpam204@gmail.com'),
 ('ometto', '$2y$10$byj31OEjhOw6ZgAwqDAM1.xYc/RpRDRsK3pVE1j/PKP9hKZs.2ZYC', 'iacopo.ferrari@einaudicorreggi'),
-('root', '$2y$10$Npqs3oOQlKMHtWe8hYUnkOuRxOUX0Jx2a5P/b./jRTXdaN8jcF2Vq', 'root@gmail.com');
+('roooooot', '$2y$10$Npqs3oOQlKMHtWe8hYUnkOuRxOUX0Jx2a5P/b./jRTXdaN8jcF2Vq', 'root@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -205,13 +209,13 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `libri`
 --
 ALTER TABLE `libri`
-  MODIFY `PK_Id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `PK_Id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `prestiti`
 --
 ALTER TABLE `prestiti`
-  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
