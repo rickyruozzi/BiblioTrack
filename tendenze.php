@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
 
-$sql = "SELECT FK_Id_libro, COUNT(*) AS num_prestiti FROM prestiti GROUP BY FK_Id_libro ORDER BY num_prestiti DESC LIMIT 3";
+$sql = "SELECT FK_Id_libro, COUNT(*) AS num_prestiti FROM prestiti GROUP BY FK_Id_libro ORDER BY num_prestiti DESC";
 $result = $conn->query($sql);
 
 $libri_popolari = [];
