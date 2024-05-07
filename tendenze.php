@@ -4,26 +4,26 @@ $username = "root";
 $password = "Ruozzi1234";
 $dbname = "bibliotrack";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+// $conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Connessione fallita: " . $conn->connect_error);
-}
+// if ($conn->connect_error) {
+//     die("Connessione fallita: " . $conn->connect_error);
+// }
 
-$sql = "SELECT FK_Id_libro, COUNT(*) AS num_prestiti FROM prestiti GROUP BY FK_Id_libro ORDER BY num_prestiti DESC";
-$result = $conn->query($sql);
+// $sql = "SELECT FK_Id_libro, COUNT(*) AS num_prestiti FROM prestiti GROUP BY FK_Id_libro ORDER BY num_prestiti DESC";
+// $result = $conn->query($sql);
 
-$libri_popolari = [];
+// $libri_popolari = [];
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        array_push($libri_popolari, $row["FK_Id_libro"]);
-    }
-} else {
-    echo "Nessun risultato trovato";
-}
+// if ($result->num_rows > 0) {
+//     while($row = $result->fetch_assoc()) {
+//         array_push($libri_popolari, $row["FK_Id_libro"]);
+//     }
+// } else {
+//     echo "Nessun risultato trovato";
+// }
 
-$conn->close();
+// $conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -146,7 +146,16 @@ table tbody tr:hover {
                         die("Connessione fallita: " . $conn->connect_error);
                     }
 
-                    $sql = "SELECT PK_Id_libro, Titolo FROM libri WHERE PK_Id_libro IN (" .implode(",", $libri_popolari) . ")";
+                    $sql = $sql = "SELECT l.PK_Id_libro, l.Titolo 
+                    FROM libri l 
+                    JOIN (
+                        SELECT FK_Id_libro 
+                        FROM prestiti 
+                        GROUP BY FK_Id_libro 
+                        ORDER BY COUNT(*) DESC 
+                        LIMIT 3
+                    ) p ON l.PK_Id_libro = p.FK_Id_libro";
+                                
                     $result = $conn->query($sql); 
 
                     if ($result!==false && $result->num_rows > 0) {
