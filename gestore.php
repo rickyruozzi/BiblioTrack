@@ -115,8 +115,18 @@ if (isset($_SESSION['username'])) {
                     if ($conn->connect_error) {
                         die("Connessione fallita: " . $conn->connect_error);
                     }
-                    $stmt = $conn->prepare('INSERT INTO prestiti(FK_id_utente, FK_id_libro) VALUES (?, ?)');
-                    $stmt->bind_param('ii', $id_utente, $book_id);
+                    $oggi = new DateTime();
+
+                    // Aggiungere tre mesi alla data di oggi
+                    $tre_mesi_dopo = clone $oggi;
+                    $tre_mesi_dopo->add(new DateInterval('P2M'));
+
+                    // Formattare le date
+                    $oggi_formattato = $oggi->format('Y-m-d');
+                    $tre_mesi_dopo_formattato = $tre_mesi_dopo->format('Y-m-d');
+
+                    $stmt = $conn->prepare('INSERT INTO prestiti(FK_id_utente, FK_id_libro, inizio_prestito, scadenza_prestito) VALUES (?, ?, ?, ?)');
+                    $stmt->bind_param('iiss', $id_utente, $book_id, $oggi_formattato, $tre_mesi_dopo_formattato);
                     $stmt->execute();
                     $stmt->close();
                     $conn->close();
