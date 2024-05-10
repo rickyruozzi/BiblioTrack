@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 30, 2024 alle 08:27
+-- Creato il: Mag 10, 2024 alle 10:28
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.0.28
 
@@ -82,13 +82,9 @@ CREATE TABLE `prestiti` (
 --
 
 INSERT INTO `prestiti` (`PK_Id_prestito`, `FK_Id_utente`, `FK_Id_libro`, `Scadenza_prestito`, `inizio_prestito`) VALUES
-(19, 1, 3, '2025-01-01', NULL),
-(20, 1, 1, '0000-00-00', NULL),
-(21, 1, 2, '0000-00-00', NULL),
-(22, 1, 1, '2024-10-10', '2024-10-10'),
-(25, 1, 3, '2024-01-01', '2023-01-01'),
-(26, 1, 3, '2024-01-01', '2023-01-01'),
-(27, 1, 11, '0000-00-00', NULL);
+(15, 1, 2, '2024-08-08', '2024-05-08'),
+(17, 1, 3, '2024-07-08', '2024-05-08'),
+(18, 1, 10, '2024-07-10', '2024-05-10');
 
 -- --------------------------------------------------------
 
@@ -128,10 +124,10 @@ INSERT INTO `users` (`username`, `password`, `email`) VALUES
 ('admin', '$2y$10$9/Psjkv2jSwRS61rziHSXuLRik/7uMOZprWTGtjRMp73xJ9FzgnIW', 'admin@gmail.com'),
 ('angela', '$2y$10$4cn419TLs0O5aBP/PQ3I9OQXsxNvXkn0w.tKSYO6K48JTuuqW2j3a', 'angela.tirabassi2005@libero.it'),
 ('angelatirabassi', '$2y$10$u0YWKFV54kUrDTyrQymyT.hA4IbLI1GmFP5zHUTD0HT.x6oZUt6kC', 'angelatirabassi05@gmail.com'),
-('ciao', '$2y$10$L.lxM9IuP6PZCVAbrmChTumoIpz7eedwEyfrl29dxdBrAVV5RN.7O', 'ciao@gmail.com'),
 ('MAtti04', '$2y$10$08F7sdGe8zoz/ROOAZMo6e/wmB.HywPyjXmuTUWjliUZ5zZd46rdi', 'scarpam204@gmail.com'),
 ('ometto', '$2y$10$byj31OEjhOw6ZgAwqDAM1.xYc/RpRDRsK3pVE1j/PKP9hKZs.2ZYC', 'iacopo.ferrari@einaudicorreggi'),
-('roooooot', '$2y$10$Npqs3oOQlKMHtWe8hYUnkOuRxOUX0Jx2a5P/b./jRTXdaN8jcF2Vq', 'root@gmail.com');
+('roooooot', '$2y$10$Npqs3oOQlKMHtWe8hYUnkOuRxOUX0Jx2a5P/b./jRTXdaN8jcF2Vq', 'root@gmail.com'),
+('sotto', '$2y$10$kcJ0aRN7zqmJfmQ9c30l5ezdwTz9iKwBowozZ4Nr1uuPrxlVCxRLC', 'sotto@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -154,7 +150,8 @@ CREATE TABLE `utenti` (
 --
 
 INSERT INTO `utenti` (`PK_Id_utente`, `Nome`, `Cognome`, `Telefono`, `fk_user`, `codice_fiscale`, `indirizzo`) VALUES
-(1, 'Riccardo', 'Ruozzi', '3389813841', 'admin', NULL, NULL);
+(1, 'Riccardo', 'Ruozzi', '3389813841', 'admin', NULL, NULL),
+(6, 'sotto', 'sottoni', NULL, 'sotto', 'sssssssssss', 'wwwww');
 
 --
 -- Indici per le tabelle scaricate
@@ -215,13 +212,13 @@ ALTER TABLE `libri`
 -- AUTO_INCREMENT per la tabella `prestiti`
 --
 ALTER TABLE `prestiti`
-  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `PK_Id_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PK_Id_utente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Limiti per le tabelle scaricate
