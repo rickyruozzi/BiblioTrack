@@ -52,11 +52,13 @@ header {
 header h1 {
     margin: 0;
     font-size: 36px;
+    cursor:pointer;
 }
 
 header h3 {
     margin-top: 5px;
     font-size: 18px;
+    cursor:pointer;
 }
 
 nav {
