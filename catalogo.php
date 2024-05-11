@@ -11,12 +11,14 @@
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
+            cursor: pointer;
         }
         header {
             background-color: #710c0c;
             color: #fff;
             padding: 20px 0;
             text-align: center;
+            cursor: pointer;
         }
         header h1 {
             margin: 0;
@@ -75,7 +77,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <h1>BiblioTrack</h1>
         <h3>Il luogo ideale per esplorare nuovi mondi attraverso la lettura</h3>
     </header>
@@ -132,5 +134,11 @@
             </table>
         </div>
     </div>
+    <script>
+        let header= document.getElementById('header');
+        header.onclick=function() {
+            window.location.href = "index.html";
+        }
+    </script>
 </body>
 </html>

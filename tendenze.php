@@ -46,6 +46,7 @@ header {
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    cursor: pointer;
 }
 
 header h1 {
@@ -118,7 +119,7 @@ table tbody tr:hover {
     </style>
 </head>
 <body>
-    <header>
+    <header id='header'>
         <h1>BiblioTrack</h1>
         <h3>Il luogo ideale per esplorare nuovi mondi attraverso la lettura</h3>
     </header>
@@ -172,5 +173,11 @@ table tbody tr:hover {
             </table>
         </section>
     </div>
+    <script>
+        let header= document.getElementById('header');
+        header.onclick=function() {
+            window.location.href = "index.html";
+        }
+    </script>
 </body>
 </html>
