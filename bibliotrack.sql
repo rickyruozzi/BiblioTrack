@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 11, 2024 alle 12:31
+-- Creato il: Mag 12, 2024 alle 14:49
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.0.28
 
@@ -28,19 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `feedback_libri` (
-  `PK_Id_feedback` int(11) NOT NULL,
-  `Voto` int(11) DEFAULT NULL,
-  `Feedback` varchar(500) NOT NULL,
-  `FK_Id_utente` int(11) NOT NULL,
-  `FK_Id_libro` int(11) NOT NULL
+  `id_feedback` int(11) NOT NULL,
+  `id_libro` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `voto` int(11) NOT NULL CHECK (`voto` <= 10 and `voto` >= 1),
+  `feedback` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dump dei dati per la tabella `feedback_libri`
---
-
-INSERT INTO `feedback_libri` (`PK_Id_feedback`, `Voto`, `Feedback`, `FK_Id_utente`, `FK_Id_libro`) VALUES
-(5, 6, 'Molto coinvolgente, consigliatissimo', 3, 5);
 
 -- --------------------------------------------------------
 
@@ -171,9 +164,9 @@ INSERT INTO `utenti` (`PK_Id_utente`, `Nome`, `Cognome`, `Mail`, `Telefono`, `FK
 -- Indici per le tabelle `feedback_libri`
 --
 ALTER TABLE `feedback_libri`
-  ADD PRIMARY KEY (`PK_Id_feedback`),
-  ADD KEY `FK_Id_utente` (`FK_Id_utente`),
-  ADD KEY `FK_Id_libro` (`FK_Id_libro`);
+  ADD PRIMARY KEY (`id_feedback`),
+  ADD KEY `id_libro` (`id_libro`),
+  ADD KEY `username` (`username`);
 
 --
 -- Indici per le tabelle `libri`
@@ -210,7 +203,7 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `feedback_libri`
 --
 ALTER TABLE `feedback_libri`
-  MODIFY `PK_Id_feedback` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_feedback` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `libri`
@@ -238,8 +231,8 @@ ALTER TABLE `utenti`
 -- Limiti per la tabella `feedback_libri`
 --
 ALTER TABLE `feedback_libri`
-  ADD CONSTRAINT `feedback_libri_ibfk_1` FOREIGN KEY (`FK_Id_utente`) REFERENCES `utenti` (`PK_Id_utente`),
-  ADD CONSTRAINT `feedback_libri_ibfk_2` FOREIGN KEY (`FK_Id_libro`) REFERENCES `libri` (`PK_Id_libro`);
+  ADD CONSTRAINT `feedback_libri_ibfk_1` FOREIGN KEY (`id_libro`) REFERENCES `libri` (`PK_Id_libro`),
+  ADD CONSTRAINT `feedback_libri_ibfk_2` FOREIGN KEY (`username`) REFERENCES `users` (`username`);
 
 --
 -- Limiti per la tabella `prestiti`
