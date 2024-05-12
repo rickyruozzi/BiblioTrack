@@ -71,7 +71,7 @@
         <input type="submit" value="Invia Valutazione">
     </form>
     <?php
-    // Connessione al database (sostituisci con i tuoi dati)
+    session_start();
     $servername = "localhost";
     $username = "root";
     $password = "Ruozzi1234";
@@ -84,25 +84,22 @@
         die("Connessione fallita: " . $conn->connect_error);
     }
 
-    // Controlla se sono stati inviati dati tramite POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Recupera i dati inviati dal modulo
         $id_libro = $_POST["id_libro"];
         $titolo = $_POST["titolo"];
         $voto = $_POST["voto"];
         $feedback = $_POST["feedback"];
+        $username=$_SESSION['username'];
 
-        // Prepara e esegui la query SQL per inserire i dati nel database
-        $sql = "INSERT INTO valutazioni_libri (id_libro, titolo, voto, feedback) VALUES ('$id_libro', '$titolo', '$voto', '$feedback')";
-
-        if ($conn->query($sql) === TRUE) {
+        $stmt=$conn->prepare( "INSERT INTO feedback_libri (id_libro, titolo, username, voto, feedback) VALUES (%s, %s, %s, %s, %s)");
+        $stmt->bind_param('issis',$id_libro, $titolo,$username,  $voto, $feedback );
+        if ($stmt->execute() === TRUE) {
             echo "<p>Valutazione salvata con successo nel database!</p>";
         } else {
             echo "<p>Errore durante il salvataggio della valutazione nel database: " . $conn->error . "</p>";
         }
     }
 
-    // Chiudi la connessione al database
     $conn->close();
     ?>
 </body>
