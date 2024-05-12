@@ -92,6 +92,7 @@
     <div class="container">
         <div class="catalog-section">
             <h2>Catalogo</h2>
+            <div style="margin-bottom:5px;"><a href="visualizza_feedback.php">Feedback</a></div>
             <table>
                 <thead>
                     <tr>
