@@ -145,7 +145,7 @@ if (isset($_SESSION['username'])) {
                     die("Connessione fallita: " . $conn->connect_error);
                 }
 
-                $sql = "SELECT * FROM libri";
+                $sql = "SELECT * FROM libri ORDER BY Titolo ASC";
 
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {

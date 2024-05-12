@@ -47,13 +47,18 @@
             color: white;
         }
         
-        .cancel-button {
-            background-color: #ff5252;
+        .valutation-button {
+            color: white;
+            background-color: #ff016c;
+        }
+
+        .show-button {
+            background-color: #ff0101;
             color: white;
         }
 
         .abilitation-button {
-            background-color: rgb(100,100,100);
+            background-color: #05a001;
             color: white;
         }
         
@@ -81,7 +86,8 @@
     <div class="container">
         <button id='mieiPrestiti' class="miei-prestiti">Mostra prestiti</button>
         <button id="Prenota" class="prenotation-button">Prenota/cancella un libro</button>
-        <button id='mostra' class="cancel-button">mostra libri</button>
+        <button id='mostra' class="show-button">mostra libri</button>
+        <button id='valuta' class="valutation-button">valuta libro</button>
         <button id='abilita' class="abilitation-button">abilita utente</button>
     </div>
 </body>
@@ -90,11 +96,18 @@
     let prenota=document.getElementById('Prenota');
     let mostra=document.getElementById('mostra');
     let abilita=document.getElementById('abilita');
+    // let valuta=document.getelementbyid('valuta');
+    // valuta.onclick=function(){
+    //     window.location.href='valuta_libro.php'
+    // }
     prenota.onclick=function(){
         window.location.href='gestore.php?action=prenota'
     }
     mostra.onclick=function(){
         window.location.href='gestore.php?action=mostra'
+    }
+    valuta.onclick=function(){
+        window.location.href='valuta_libro.php'
     }
     miei.onclick=function(){
         window.location.href='gestore.php?action=visualizza'
