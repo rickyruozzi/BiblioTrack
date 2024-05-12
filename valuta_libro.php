@@ -57,7 +57,7 @@
     <h2>Valutazione Libro</h2>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label>ID del Libro:</label><br>
-        <input type="text" name="id_libro" required><br>
+        <input type="number" name="id_libro" required><br>
         
         <label>Titolo del Libro:</label><br>
         <input type="text" name="titolo" required><br>
@@ -89,17 +89,17 @@
         $titolo = $_POST["titolo"];
         $voto = $_POST["voto"];
         $feedback = $_POST["feedback"];
-        $username=$_SESSION['username'];
+        $user=$_SESSION['username'];
 
-        $stmt=$conn->prepare( "INSERT INTO feedback_libri (id_libro, titolo, username, voto, feedback) VALUES (%s, %s, %s, %s, %s)");
-        $stmt->bind_param('issis',$id_libro, $titolo,$username,  $voto, $feedback );
-        if ($stmt->execute() === TRUE) {
+        $stmt=$conn->prepare("INSERT INTO feedback_libri (id_libro, username, voto, feedback, titolo) VALUES (?,?,?,?,?)");
+        $stmt->bind_param('isiss',$id_libro, $user, $voto, $feedback, $titolo);
+        if ($stmt->execute()) {
             echo "<p>Valutazione salvata con successo nel database!</p>";
         } else {
             echo "<p>Errore durante il salvataggio della valutazione nel database: " . $conn->error . "</p>";
         }
+        $stmt->close();
     }
-
     $conn->close();
     ?>
 </body>
