@@ -91,7 +91,7 @@
     </nav>
     <div class="container">
         <div class="catalog-section">
-            <h2>Prestiti</h2>
+            <h2>Catalogo</h2>
             <table>
                 <thead>
                     <tr>
