@@ -156,7 +156,7 @@ table tbody tr:hover {
                         FROM prestiti 
                         GROUP BY FK_Id_libro 
                         ORDER BY COUNT(*) DESC 
-                        LIMIT 3
+                        LIMIT 5
                     ) p ON l.PK_Id_libro = p.FK_Id_libro";
                                 
                     $result = $conn->query($sql); 
