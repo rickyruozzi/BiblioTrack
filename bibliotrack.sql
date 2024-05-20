@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 20, 2024 alle 12:40
+-- Creato il: Mag 20, 2024 alle 12:44
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.0.28
 
@@ -67,7 +67,7 @@ CREATE TABLE `libri` (
 
 INSERT INTO `libri` (`PK_Id_libro`, `Titolo`, `Autore`, `Casa_editrice`, `Anno_pubblicazione`, `Collana`, `Genere`, `stato`) VALUES
 (1, 'Il mastino dei Baskerville', 'Arthur Conan Doyle', 'Feltrinelli', 1902, 'GrandiGialli', 'Giallo', 0),
-(3, 'La bibbia', '', 'Feltrinelli', 0, 'Religione', 'Teologia', 0),
+(3, 'La bibbia', '', 'Feltrinelli', 0, 'Religione', 'Teologia', 1),
 (4, 'La bella addormentata nel bosco', 'Gianbattista Basile', 'Giunti', 1922, 'Bambini', 'Fiaba', 0),
 (5, 'I 10 piccoli indiani', 'Agatha Christie', 'Giunti', 1939, 'Grandi classici', 'Gialli', 0),
 (6, 'Sei personaggi in cerca di autore', 'Luigi Pirandello', 'Gli Adelphi', 1921, 'Classici italiani', 'Commedia teatrale', 0),
@@ -126,7 +126,8 @@ INSERT INTO `prestiti` (`PK_Id_prestito`, `FK_Id_utente`, `FK_Id_libro`, `Scaden
 (21, 3, 16, '2024-07-17', '2024-05-17'),
 (29, 3, 4, '2024-07-20', '2024-05-20'),
 (32, 3, 4, '2024-07-20', '2024-05-20'),
-(56, 3, 3, '2024-07-20', '2024-05-20');
+(56, 3, 3, '2024-07-20', '2024-05-20'),
+(57, 3, 3, '2024-07-20', '2024-05-20');
 
 -- --------------------------------------------------------
 
@@ -234,7 +235,7 @@ ALTER TABLE `libri`
 -- AUTO_INCREMENT per la tabella `prestiti`
 --
 ALTER TABLE `prestiti`
-  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
