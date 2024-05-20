@@ -52,6 +52,11 @@
             background-color: #ff016c;
         }
 
+        .cancellation-button {
+            color: white;
+            background-color: #040dc1;
+        }
+
         .show-button {
             background-color: #ff0101;
             color: white;
@@ -85,7 +90,8 @@
     </div>
     <div class="container">
         <button id='mieiPrestiti' class="miei-prestiti">Mostra prestiti</button>
-        <button id="Prenota" class="prenotation-button">Prenota/cancella un libro</button>
+        <button id="Prenota" class="prenotation-button">Prenota</button>
+        <button id="cancella" class="cancellation-button">cancella</button>
         <button id='mostra' class="show-button">mostra libri</button>
         <button id='valuta' class="valutation-button">valuta libro</button>
         <button id='abilita' class="abilitation-button">abilita utente</button>
@@ -95,6 +101,7 @@
     let miei=document.getElementById('mieiPrestiti');
     let prenota=document.getElementById('Prenota');
     let mostra=document.getElementById('mostra');
+    let cancella=document.getElementById('cancella');
     let abilita=document.getElementById('abilita');
     // let valuta=document.getelementbyid('valuta');
     // valuta.onclick=function(){
@@ -108,6 +115,9 @@
     }
     valuta.onclick=function(){
         window.location.href='valuta_libro.php'
+    }
+    cancella.onclick=function(){
+        window.location.href='gestore.php?action=cancella'
     }
     miei.onclick=function(){
         window.location.href='gestore.php?action=visualizza'

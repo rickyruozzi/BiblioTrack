@@ -107,37 +107,73 @@ if (isset($_SESSION['username'])) {
     if (isset($_GET['action'])) {
         $action = $_GET['action'];
         switch ($action) {
+            case 'cancella':
+                if (isset($_POST['book_id'])) {
+                    $book_id = $_POST['book_id'];
+                    
+                    // Effettua la query per cancellare la prenotazione
+                    $stmt = $conn->prepare('DELETE FROM prestiti WHERE FK_Id_utente = ? AND FK_Id_libro = ?');
+                    $stmt->bind_param('ii', $id_utente, $book_id);
+                    $stmt->execute();
+                    $stmt->close();
+            
+                    // Aggiorna lo stato del libro a 0 (disponibile)
+                    $stmt = $conn->prepare('UPDATE libri SET stato = 0 WHERE PK_Id_libro = ?');
+                    $stmt->bind_param('i', $book_id);
+                    $stmt->execute();
+                    $stmt->close();
+            
+                    echo 'Prenotazione cancellata e libro reso disponibile.';
+                } else {
+                    echo 'Non hai selezionato un ID libro valido.';
+                }
+                break;
+            
             case 'prenota':
                 if (isset($_POST['book_id'])) {
                     $book_id = $_POST['book_id'];
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-
-                    if ($conn->connect_error) {
-                        die("Connessione fallita: " . $conn->connect_error);
-                    }
-                    $oggi = new DateTime();
-
-                    // Aggiungere tre mesi alla data di oggi
-                    $tre_mesi_dopo = clone $oggi;
-                    $tre_mesi_dopo->add(new DateInterval('P2M'));
-
-                    // Formattare le date
-                    $oggi_formattato = $oggi->format('Y-m-d');
-                    $tre_mesi_dopo_formattato = $tre_mesi_dopo->format('Y-m-d');
-
-                    $stmt = $conn->prepare('INSERT INTO prestiti(FK_id_utente, FK_id_libro, inizio_prestito, scadenza_prestito) VALUES (?, ?, ?, ?)');
-                    $stmt->bind_param('iiss', $id_utente, $book_id, $oggi_formattato, $tre_mesi_dopo_formattato);
+                    
+                    // Effettua la query per ottenere lo stato del libro
+                    $stmt = $conn->prepare('SELECT stato FROM libri WHERE PK_Id_libro = ?');
+                    $stmt->bind_param('i', $book_id);
                     $stmt->execute();
+                    $stmt->bind_result($stato);
+                    $stmt->fetch();
                     $stmt->close();
-                    $conn->close();
-                    if (isset($_POST['book_id'])==null){
-                        echo 'non hai scelto un id esistente';
+            
+                    // Verifica se lo stato è 1
+                    if ($stato === 1) {
+                        echo 'Il libro non è disponibile per la prenotazione.';
+                    } else {
+                        // Procedi con la prenotazione
+                        $oggi = new DateTime();
+                        // Aggiungere tre mesi alla data di oggi
+                        $tre_mesi_dopo = clone $oggi;
+                        $tre_mesi_dopo->add(new DateInterval('P2M'));
+            
+                        // Formattare le date
+                        $oggi_formattato = $oggi->format('Y-m-d');
+                        $tre_mesi_dopo_formattato = $tre_mesi_dopo->format('Y-m-d');
+            
+                        // Inserisci la prenotazione nel database
+                        $stmt = $conn->prepare('INSERT INTO prestiti(FK_id_utente, FK_id_libro, inizio_prestito, scadenza_prestito) VALUES (?, ?, ?, ?)');
+                        $stmt->bind_param('iiss', $id_utente, $book_id, $oggi_formattato, $tre_mesi_dopo_formattato);
+                        $stmt->execute();
+                        $stmt->close();
+            
+                        // Aggiorna lo stato del libro a 1 (non disponibile)
+                        $stmt = $conn->prepare('UPDATE libri SET stato = 1 WHERE PK_Id_libro = ?');
+                        $stmt->bind_param('i', $book_id);
+                        $stmt->execute();
+                        $stmt->close();
+            
+                        echo 'Prenotazione effettuata.';
                     }
-                    else{
-                        echo 'prenotazione effettuata';
-                    }
+                } else {
+                    echo 'Non hai selezionato un ID libro valido.';
                 }
                 break;
+            
             case 'mostra':
                 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -145,7 +181,7 @@ if (isset($_SESSION['username'])) {
                     die("Connessione fallita: " . $conn->connect_error);
                 }
 
-                $sql = "SELECT * FROM libri ORDER BY Titolo ASC";
+                $sql = "SELECT * FROM libri where stato!=1 ORDER BY Titolo ASC";
 
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
@@ -215,12 +251,21 @@ if (isset($_GET['action']) && $_GET['action'] == 'prenota') {
         <form method='post' action=''>
             <label for='book_id'>Seleziona ID Libro:</label>
             <input type='text' id='book_id' name='book_id'>
-            <button type='submit' name='action' value='prenota'>Prenota</button>
-            <button type='submit' name='action' value='cancella'>Cancella</button>
+            <button type='submit' name='action' style='background-color:green' value='prenota'>Prenota</button>
+        </form>
+    </div>";
+}
+if (isset($_GET['action']) && $_GET['action'] == 'cancella') {
+    echo "
+    <div>
+        <form method='post' action=''>
+            <label for='book_id'>Seleziona ID Libro:</label>
+            <input type='text' id='book_id' name='book_id'>
+            <button type='submit' name='action' value='cancella'>cancella</button>
         </form>
     </div>";
 }
 ?>
 
 </body>
-</html>
+</html> 
