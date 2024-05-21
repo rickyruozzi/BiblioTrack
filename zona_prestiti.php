@@ -38,7 +38,7 @@
         }
         
         .prenotation-button {
-            background-color: #0ce8ca;
+            background-color: #05a001;
             color: white;
         }
         
@@ -54,16 +54,16 @@
 
         .cancellation-button {
             color: white;
-            background-color: #040dc1;
+            background-color: #ff0101;
         }
 
         .show-button {
-            background-color: #ff0101;
+            background-color: #040dc1;
             color: white;
         }
 
         .abilitation-button {
-            background-color: #05a001;
+            background-color: #0ce8ca;
             color: white;
         }
         
