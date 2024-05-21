@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Stampa dei risultati nella tabella
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>".$row["id_feedback"]."</td><td>".$row["username"]."</td><td>".$row["voto"]."</td><td>".$row["feedback"]."</td><td>".$row["titolo"]."</td></tr>";
+            echo "<tr><td>".$row["ID_feedback"]."</td><td>".$row["username"]."</td><td>".$row["voto"]."</td><td>".$row["feedback"]."</td><td>".$row["titolo"]."</td></tr>";
         }
 
         echo "</table>";

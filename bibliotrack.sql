@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 21, 2024 alle 08:31
+-- Creato il: Mag 21, 2024 alle 08:52
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.0.28
 
@@ -28,45 +28,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `feedback_libri` (
-  `PK_Id_feedback` int(11) NOT NULL,
-  `Voto` int(11) DEFAULT NULL,
-  `Feedback` varchar(500) NOT NULL,
-  `FK_Id_utente` int(11) NOT NULL,
-  `FK_Id_libro` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `ID_feedback` int(11) NOT NULL,
+  `username` varchar(30) DEFAULT NULL,
+  `voto` int(11) DEFAULT NULL,
+  `feedback` varchar(30) DEFAULT NULL,
+  `titolo` varchar(100) DEFAULT NULL,
+  `id_libro` int(11) DEFAULT NULL
+) ;
 
 --
 -- Dump dei dati per la tabella `feedback_libri`
 --
 
-INSERT INTO `feedback_libri` (`PK_Id_feedback`, `Voto`, `Feedback`, `FK_Id_utente`, `FK_Id_libro`) VALUES
-(5, 6, 'Molto coinvolgente, consigliatissimo', 3, 5),
-(8, 10, 'Un libro straordinario! Mi ha tenuto incollato fino all\'ultima pagina.', 3, 1),
-(9, 8, 'Ben scritto e molto interessante, anche se un po\' lento in alcune parti.', 4, 13),
-(10, 6, 'Una lettura discreta. Alcune parti erano buone, ma altre un po\' noiose.', 3, 3),
-(11, 4, 'Non mi è piaciuto molto. La trama era prevedibile e i personaggi poco sviluppati.', 4, 4),
-(12, 2, 'Pessimo. Non lo consiglierei a nessuno.', 3, 5),
-(13, 9, 'Capolavoro assoluto! Consigliatissimo!', 4, 6),
-(14, 7, 'Molto buono, anche se ci sono stati alcuni errori grammaticali.', 3, 7),
-(15, 5, 'Niente di speciale, ma nemmeno terribile. Un libro nella media.', 4, 8),
-(16, 3, 'Mi aspettavo di più da questo libro. Non mi ha entusiasmato.', 3, 9),
-(17, 1, 'Una delusione totale. Non lo raccomando.', 4, 10),
-(18, 10, 'Un altro capolavoro di questo autore. Fantastico!', 3, 11),
-(19, 8, 'Buona lettura, anche se non eccezionale.', 4, 12),
-(20, 6, 'Interessante, ma non mi ha coinvolto molto.', 3, 13),
-(21, 4, 'Non all\'altezza delle aspettative.', 4, 14),
-(22, 2, 'Terribile. Non vale il tempo speso a leggerlo.', 3, 15),
-(23, 9, 'Incredibile! Lo rileggerei ancora.', 4, 16),
-(24, 7, 'Molto buono, consigliato.', 3, 17),
-(25, 5, 'Sufficiente, niente di più.', 4, 18),
-(26, 3, 'Non è il mio genere.', 3, 19),
-(27, 1, 'Assolutamente no. Non mi è piaciuto per niente.', 4, 20),
-(28, 10, 'Uno dei migliori libri che abbia mai letto.', 3, 21),
-(29, 8, 'Interessante e ben scritto.', 4, 22),
-(30, 6, 'Un libro nella media, né eccezionale né terribile.', 3, 23),
-(31, 4, 'Non mi ha convinto.', 4, 24),
-(32, 2, 'Non lo consiglierei.', 3, 25),
-(33, 9, 'Fantastico, un must-read!', 4, 26);
+INSERT INTO `feedback_libri` (`ID_feedback`, `username`, `voto`, `feedback`, `titolo`, `id_libro`) VALUES
+(2, 'admin', 8, 'cd c ', 'Il mastino dei baskerville', 1);
 
 -- --------------------------------------------------------
 
@@ -208,9 +183,9 @@ INSERT INTO `utenti` (`PK_Id_utente`, `Nome`, `Cognome`, `Mail`, `Telefono`, `FK
 -- Indici per le tabelle `feedback_libri`
 --
 ALTER TABLE `feedback_libri`
-  ADD PRIMARY KEY (`PK_Id_feedback`),
-  ADD KEY `FK_Id_utente` (`FK_Id_utente`),
-  ADD KEY `FK_Id_libro` (`FK_Id_libro`);
+  ADD PRIMARY KEY (`ID_feedback`),
+  ADD KEY `username` (`username`),
+  ADD KEY `id_libro` (`id_libro`);
 
 --
 -- Indici per le tabelle `libri`
@@ -247,7 +222,7 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `feedback_libri`
 --
 ALTER TABLE `feedback_libri`
-  MODIFY `PK_Id_feedback` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ID_feedback` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `libri`
@@ -275,8 +250,8 @@ ALTER TABLE `utenti`
 -- Limiti per la tabella `feedback_libri`
 --
 ALTER TABLE `feedback_libri`
-  ADD CONSTRAINT `feedback_libri_ibfk_1` FOREIGN KEY (`FK_Id_utente`) REFERENCES `utenti` (`PK_Id_utente`),
-  ADD CONSTRAINT `feedback_libri_ibfk_2` FOREIGN KEY (`FK_Id_libro`) REFERENCES `libri` (`PK_Id_libro`);
+  ADD CONSTRAINT `feedback_libri_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`),
+  ADD CONSTRAINT `feedback_libri_ibfk_2` FOREIGN KEY (`id_libro`) REFERENCES `libri` (`PK_Id_libro`);
 
 --
 -- Limiti per la tabella `prestiti`
