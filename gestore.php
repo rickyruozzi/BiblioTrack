@@ -94,7 +94,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
 }
-$sql = "SELECT PK_Id_utente FROM utenti WHERE fk_user = '$user'";
+$sql = "SELECT PK_Id_utente FROM utenti WHERE username = '$user'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

@@ -56,6 +56,9 @@
             <label for="cf">codice fiscale:</label>
             <input type="text" id="cf" name="cf" required>
 
+            <label for="mail">mail:</label>
+            <input type="text" id="mail" name="mail" required>
+
             <label for="indirizzo">indirizzo:</label>
             <input type="text" id="indirizzo" name="indirizzo" required>
 
@@ -81,12 +84,13 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nome = $_POST["nome"];
             $cognome = $_POST["cognome"];
-            $teefono = $_POST["telefono"];
+            $telefono = $_POST["telefono"];
             $indirizzo = $_POST['indirizzo'];
+            $mail = $_POST['mail'];
             $cf = $_POST['cf'];
             $username = $_POST['username'];
-            $stmt = $conn->prepare("INSERT INTO utenti (Nome, Cognome, Telefono, indirizzo, codice_fiscale, fk_user ) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssss", $nome, $cognome, $telefono, $indirizzo, $cf, $username);
+            $stmt = $conn->prepare("INSERT INTO utenti (Nome, Cognome, Telefono, indirizzo, codice_fiscale, username,Mail ) VALUES (?,?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssss", $nome, $cognome, $telefono, $indirizzo, $cf, $username,$mail);
             if ($stmt->execute()) {
                 header("Location: zona_prestiti.php");
             } else {

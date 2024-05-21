@@ -88,6 +88,7 @@
         <a href="catalogo.php">Catalogo</a>
         <a href="prestiti.html">Prestiti</a>
         <a href="tendenze.php">Tendenze</a>
+        <a href="eventi.html">eventi</a>
     </nav>
     <div class="container">
         <div class="catalog-section">
