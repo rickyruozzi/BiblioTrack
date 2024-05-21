@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zona prestiti</title>
-    <link rel="icon" href="car-vehicles-transport-cartoon-png.webp" type="image/x-icon">
+    <link rel="icon" href="LogoBiblioteca.png" type="image/x-icon">
     <style>
         body {
             font-family: 'Times New Roman', Times, serif;

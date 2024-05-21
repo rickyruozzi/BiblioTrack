@@ -1,5 +1,5 @@
 <head>
-    <title>registrazione</title>
+    <title>Abilitazione utente</title>
     <link rel="icon" href="LogoBiblioteca.png" type="image/x-icon">
     <style>        
     body {

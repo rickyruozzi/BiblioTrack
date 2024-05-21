@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="car-vehicles-transport-cartoon-png.webp" type="image/x-icon">
+    <link rel="icon" href="LogoBiblioteca.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>

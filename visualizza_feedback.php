@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="LogoBiblioteca.png" type="image/x-icon">
     <title>Visualizza Feedback del Libro</title>
     <style>
         body {
