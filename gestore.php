@@ -133,6 +133,19 @@ if (isset($_SESSION['username'])) {
             case 'prenota':
                 if (isset($_POST['book_id'])) {
                     $book_id = $_POST['book_id'];
+
+                    // Verifica se l'utente ha già preso in prestito 3 libri
+                    $stmt = $conn->prepare('SELECT COUNT(*) FROM prestiti WHERE FK_Id_utente = ? AND Scadenza_prestito >= CURDATE()');
+                    $stmt->bind_param('i', $id_utente);
+                    $stmt->execute();
+                    $stmt->bind_result($count);
+                    $stmt->fetch();
+                    $stmt->close();
+
+                    if ($count >= 3) {
+                        echo 'Hai già preso in prestito 3 libri. Non puoi prendere altri libri in prestito.';
+                        break;
+                    }
                     
                     // Effettua la query per ottenere lo stato del libro
                     $stmt = $conn->prepare('SELECT stato FROM libri WHERE PK_Id_libro = ?');
@@ -188,7 +201,7 @@ if (isset($_SESSION['username'])) {
                 if ($result->num_rows > 0) {
                     echo "<div><h1>Catalogo:</h1></div>";
                     echo "<table border='1'>";
-                    echo "<tr><th>ID libro</th><th>titolo</th><th>autore</th><th>Dcasa editrice</th><th>anno pubblicazione</th><th>collana</th><th>genere</th></tr>";
+                    echo "<tr><th>ID libro</th><th>titolo</th><th>autore</th><th>casa editrice</th><th>anno pubblicazione</th><th>collana</th><th>genere</th></tr>";
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $row["PK_Id_libro"] . "</td>";
@@ -262,11 +275,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'cancella') {
         <form method='post' action=''>
             <label for='book_id'>Seleziona ID Libro:</label>
             <input type='text' id='book_id' name='book_id'>
-            <button type='submit' name='action' value='cancella'>cancella</button>
+            <button type='submit' name='action' value='cancella'>Cancella</button>
         </form>
     </div>";
 }
 ?>
 
 </body>
-</html> 
+</html>

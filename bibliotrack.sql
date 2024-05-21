@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 21, 2024 alle 08:56
+-- Creato il: Mag 21, 2024 alle 09:20
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.0.28
 
@@ -31,17 +31,43 @@ CREATE TABLE `feedback_libri` (
   `ID_feedback` int(11) NOT NULL,
   `username` varchar(30) DEFAULT NULL,
   `voto` int(11) DEFAULT NULL,
-  `feedback` varchar(250) DEFAULT NULL,
+  `feedback` varchar(255) DEFAULT NULL,
   `titolo` varchar(100) DEFAULT NULL,
   `id_libro` int(11) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dump dei dati per la tabella `feedback_libri`
 --
 
 INSERT INTO `feedback_libri` (`ID_feedback`, `username`, `voto`, `feedback`, `titolo`, `id_libro`) VALUES
-(3, 'admin', 9, 'bellissimo giallo, vorrei rile', 'I dieci piccoli indiani ', 5);
+(5, 'angelatirabassi', 6, 'Molto coinvolgente, consigliatissimo', 'I 10 piccoli indiani', 5),
+(8, 'martinob', 10, 'Un libro straordinario! Mi ha tenuto incollato fino all\'ultima pagina.', 'Il mastino dei Baskerville', 1),
+(9, 'f', 8, 'Ben scritto e molto interessante, anche se un po\' lento in alcune parti.', 'Il signore degli anelli', 13),
+(10, 'MAtti04', 6, 'Una lettura discreta. Alcune parti erano buone, ma altre un po\' noiose.', 'La bibbia', 3),
+(11, 'ometto', 4, 'Non mi è piaciuto molto. La trama era prevedibile e i personaggi poco sviluppati.', 'La bella addormentata nel bosco', 4),
+(12, 'admin', 2, 'Pessimo. Non lo consiglierei a nessuno.', 'I 10 piccoli indiani', 5),
+(13, 'angelatirabassi', 9, 'Capolavoro assoluto! Consigliatissimo!', 'Sei personaggi in cerca di autore', 6),
+(14, 'martinob', 7, 'Molto buono, anche se ci sono stati alcuni errori grammaticali.', 'Il grande Gatsby', 7),
+(15, 'f', 5, 'Niente di speciale, ma nemmeno terribile. Un libro nella media.', '1984', 8),
+(16, 'MAtti04', 3, 'Mi aspettavo di più da questo libro. Non mi ha entusiasmato.', 'Orgoglio e pregiudizio', 9),
+(17, 'ometto', 1, 'Una delusione totale. Non lo raccomando.', 'Harry Potter e la pietra filosofale', 10),
+(18, 'admin', 10, 'Un altro capolavoro di questo autore. Fantastico!', 'La ragazza di Bube', 11),
+(19, 'angelatirabassi', 8, 'Buona lettura, anche se non eccezionale.', 'To Kill a Mockingbird', 12),
+(20, 'martinob', 6, 'Interessante, ma non mi ha coinvolto molto.', 'Il signore degli anelli', 13),
+(21, 'f', 4, 'Non all\'altezza delle aspettative.', 'Piccole donne', 14),
+(22, 'MAtti04', 2, 'Terribile. Non vale il tempo speso a leggerlo.', 'Cime tempestose', 15),
+(23, 'ometto', 9, 'Incredibile! Lo rileggerei ancora.', 'Cent\'anni di solitudine', 16),
+(24, 'admin', 7, 'Molto buono, consigliato.', 'Guerra e pace', 17),
+(25, 'angelatirabassi', 5, 'Sufficiente, niente di più.', 'La colpa è delle stelle', 18),
+(26, 'martinob', 3, 'Non è il mio genere.', 'Anna Karenina', 19),
+(27, 'f', 1, 'Assolutamente no. Non mi è piaciuto per niente.', 'La storia infinita', 20),
+(28, 'MAtti04', 10, 'Uno dei migliori libri che abbia mai letto.', 'Lo Hobbit', 21),
+(29, 'ometto', 8, 'Interessante e ben scritto.', 'I miserabili', 22),
+(30, 'admin', 6, 'Un libro nella media, né eccezionale né terribile.', 'La fattoria degli animali', 23),
+(31, 'angelatirabassi', 4, 'Non mi ha convinto.', 'Il codice da Vinci', 24),
+(32, 'martinob', 2, 'Non lo consiglierei.', 'Harry Potter e il prigioniero di Azkaban', 25),
+(33, 'f', 9, 'Fantastico, un must-read!', 'Le cronache di Narnia: Il leone, la strega e l\'armadio', 26);
 
 -- --------------------------------------------------------
 
@@ -66,14 +92,14 @@ CREATE TABLE `libri` (
 
 INSERT INTO `libri` (`PK_Id_libro`, `Titolo`, `Autore`, `Casa_editrice`, `Anno_pubblicazione`, `Collana`, `Genere`, `stato`) VALUES
 (1, 'Il mastino dei Baskerville', 'Arthur Conan Doyle', 'Feltrinelli', 1902, 'GrandiGialli', 'Giallo', 0),
-(3, 'La bibbia', '', 'Feltrinelli', 0, 'Religione', 'Teologia', 1),
+(3, 'La bibbia', '', 'Feltrinelli', 0, 'Religione', 'Teologia', 0),
 (4, 'La bella addormentata nel bosco', 'Gianbattista Basile', 'Giunti', 1922, 'Bambini', 'Fiaba', 0),
 (5, 'I 10 piccoli indiani', 'Agatha Christie', 'Giunti', 1939, 'Grandi classici', 'Gialli', 0),
 (6, 'Sei personaggi in cerca di autore', 'Luigi Pirandello', 'Gli Adelphi', 1921, 'Classici italiani', 'Commedia teatrale', 0),
 (7, 'Il grande Gatsby', 'Francis Scott Fitzgerald', 'Mondadori', 1925, 'I Meridiani', 'Romanzo', 0),
 (8, '1984', 'George Orwell', 'Mondadori', 1949, 'Oscar Moderni', 'Romanzo distopico', 0),
 (9, 'Orgoglio e pregiudizio', 'Jane Austen', 'Garzanti', 1813, 'I grandi libri', 'Romanzo', 0),
-(10, 'Harry Potter e la pietra filosofale', 'Joanne Rowling', 'Salani', 1997, 'Harry Potter', 'Fantasy', 0),
+(10, 'Harry Potter e la pietra filosofale', 'Joanne Rowling', 'Salani', 1997, 'Harry Potter', 'Fantasy', 1),
 (11, 'La ragazza di Bube', 'Carlo Cassola', 'Einaudi', 1960, 'Einaudi tascabili', 'Romanzo', 0),
 (12, 'To Kill a Mockingbird', 'Harper Lee', 'Mondadori', 1960, 'Oscar Moderni', 'Romanzo', 0),
 (13, 'Il signore degli anelli', 'John Ronald Reuel Tolkien', 'Bompiani', 1954, 'Tascabili Bompiani', 'Fantasy', 0),
@@ -104,29 +130,6 @@ CREATE TABLE `prestiti` (
   `Scadenza_prestito` date NOT NULL,
   `Inizio_prestito` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dump dei dati per la tabella `prestiti`
---
-
-INSERT INTO `prestiti` (`PK_Id_prestito`, `FK_Id_utente`, `FK_Id_libro`, `Scadenza_prestito`, `Inizio_prestito`) VALUES
-(4, 4, 6, '2024-04-24', '2024-05-24'),
-(5, 3, 4, '2024-04-24', '2024-05-24'),
-(7, 3, 11, '2024-07-11', '2024-05-11'),
-(8, 3, 11, '2024-07-11', '2024-05-11'),
-(9, 3, 11, '2024-07-11', '2024-05-11'),
-(11, 3, 11, '2024-07-11', '2024-05-11'),
-(12, 3, 8, '2024-07-17', '2024-05-17'),
-(13, 3, 8, '2024-07-17', '2024-05-17'),
-(14, 3, 8, '2024-07-17', '2024-05-17'),
-(15, 3, 8, '2024-07-17', '2024-05-17'),
-(16, 3, 8, '2024-07-17', '2024-05-17'),
-(20, 3, 4, '2024-07-17', '2024-05-17'),
-(21, 3, 16, '2024-07-17', '2024-05-17'),
-(29, 3, 4, '2024-07-20', '2024-05-20'),
-(32, 3, 4, '2024-07-20', '2024-05-20'),
-(56, 3, 3, '2024-07-20', '2024-05-20'),
-(57, 3, 3, '2024-07-20', '2024-05-20');
 
 -- --------------------------------------------------------
 
@@ -183,9 +186,7 @@ INSERT INTO `utenti` (`PK_Id_utente`, `Nome`, `Cognome`, `Mail`, `Telefono`, `FK
 -- Indici per le tabelle `feedback_libri`
 --
 ALTER TABLE `feedback_libri`
-  ADD PRIMARY KEY (`ID_feedback`),
-  ADD KEY `username` (`username`),
-  ADD KEY `id_libro` (`id_libro`);
+  ADD PRIMARY KEY (`ID_feedback`);
 
 --
 -- Indici per le tabelle `libri`
@@ -222,7 +223,7 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `feedback_libri`
 --
 ALTER TABLE `feedback_libri`
-  MODIFY `ID_feedback` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_feedback` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT per la tabella `libri`
@@ -234,7 +235,7 @@ ALTER TABLE `libri`
 -- AUTO_INCREMENT per la tabella `prestiti`
 --
 ALTER TABLE `prestiti`
-  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `PK_Id_prestito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
@@ -245,13 +246,6 @@ ALTER TABLE `utenti`
 --
 -- Limiti per le tabelle scaricate
 --
-
---
--- Limiti per la tabella `feedback_libri`
---
-ALTER TABLE `feedback_libri`
-  ADD CONSTRAINT `feedback_libri_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`),
-  ADD CONSTRAINT `feedback_libri_ibfk_2` FOREIGN KEY (`id_libro`) REFERENCES `libri` (`PK_Id_libro`);
 
 --
 -- Limiti per la tabella `prestiti`
