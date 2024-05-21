@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 21, 2024 alle 08:52
+-- Creato il: Mag 21, 2024 alle 08:56
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.0.28
 
@@ -31,7 +31,7 @@ CREATE TABLE `feedback_libri` (
   `ID_feedback` int(11) NOT NULL,
   `username` varchar(30) DEFAULT NULL,
   `voto` int(11) DEFAULT NULL,
-  `feedback` varchar(30) DEFAULT NULL,
+  `feedback` varchar(250) DEFAULT NULL,
   `titolo` varchar(100) DEFAULT NULL,
   `id_libro` int(11) DEFAULT NULL
 ) ;
@@ -41,7 +41,7 @@ CREATE TABLE `feedback_libri` (
 --
 
 INSERT INTO `feedback_libri` (`ID_feedback`, `username`, `voto`, `feedback`, `titolo`, `id_libro`) VALUES
-(2, 'admin', 8, 'cd c ', 'Il mastino dei baskerville', 1);
+(3, 'admin', 9, 'bellissimo giallo, vorrei rile', 'I dieci piccoli indiani ', 5);
 
 -- --------------------------------------------------------
 
