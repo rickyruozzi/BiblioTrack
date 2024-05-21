@@ -1,7 +1,8 @@
 <head>
     <title>registrazione</title>
-    <link rel="icon" href="car-vehicles-transport-cartoon-png.webp" type="image/x-icon">
-    <style>        body {
+    <link rel="icon" href="LogoBiblioteca.png" type="image/x-icon">
+    <style>        
+    body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
         margin: 0;
