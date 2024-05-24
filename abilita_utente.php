@@ -89,7 +89,7 @@
             $mail = $_POST['mail'];
             $cf = $_POST['cf'];
             $username = $_POST['username'];
-            $stmt = $conn->prepare("INSERT INTO utenti (Nome, Cognome, Telefono, indirizzo, codice_fiscale, username,Mail ) VALUES (?,?, ?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO utenti (Nome, Cognome, Telefono, indirizzo, codice_fiscale, username, Mail ) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("sssssss", $nome, $cognome, $telefono, $indirizzo, $cf, $username,$mail);
             if ($stmt->execute()) {
                 header("Location: zona_prestiti.php");
