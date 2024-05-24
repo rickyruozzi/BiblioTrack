@@ -15,7 +15,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh; /* Altezza minima per riempire l'intero viewport */
             color: #333;
         }
 
@@ -89,6 +89,15 @@
             background-color: #555;
         }
 
+        .logout-button {
+            background-color: #ff0000; /* Rosso */
+            position: fixed; /* Posizione fissa */
+            bottom: 20px; /* Distanza dal fondo */
+            padding: 8px 16px; /* Ridimensiona il pulsante */
+            font-size: 14px; /* Ridimensiona il testo */
+            color:white;
+        }
+
         @media (max-width: 600px) {
             button {
                 width: 100%;
@@ -121,7 +130,13 @@
         <button id="valuta" class="valutation-button">Valuta libro</button>
         <button id="abilita" class="abilitation-button">Abilita utente</button>
     </div>
+    <button onclick="logout()" class="logout-button">Logout</button>
+
     <script>
+        function logout() {
+            window.location.href = 'logout.php';
+        }
+
         document.getElementById('Prenota').onclick = function() {
             window.location.href = 'gestore.php?action=prenota';
         };
