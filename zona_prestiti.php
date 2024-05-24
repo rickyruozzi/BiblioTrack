@@ -7,8 +7,8 @@
     <link rel="icon" href="LogoBiblioteca.png" type="image/x-icon">
     <style>
         body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #f7f7f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,59 +16,84 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            color: #333;
         }
-        
+
         .header {
             text-align: center;
-            margin-bottom: 20px; /* Aggiunto margine inferiore per separare dagli altri contenuti */
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .header h7 {
+            font-size: 1em;
+            color: #555;
         }
 
         .container {
-            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
-        
+
         button {
             font-size: 16px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             margin: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        
+
         .prenotation-button {
-            background-color: #05a001;
+            background-color: #28a745;
             color: white;
         }
-        
+
         .miei-prestiti {
-            background-color: #d9ff01;
+            background-color: #ffc107;
             color: white;
         }
-        
+
         .valutation-button {
-            color: white;
             background-color: #ff016c;
+            color: white;
         }
 
         .cancellation-button {
+            background-color: #dc3545;
             color: white;
-            background-color: #ff0101;
         }
 
         .show-button {
-            background-color: #040dc1;
+            background-color: #007bff;
             color: white;
         }
 
         .abilitation-button {
-            background-color: #0ce8ca;
+            background-color: #17a2b8;
             color: white;
         }
-        
+
         button:hover {
+            transform: translateY(-3px);
             background-color: #555;
+        }
+
+        @media (max-width: 600px) {
+            button {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>    
@@ -89,41 +114,32 @@
         <h7>Ricorda di abilitare l'utente per prendere in prestito i libri!</h7>
     </div>
     <div class="container">
-        <button id='mieiPrestiti' class="miei-prestiti">Mostra prestiti</button>
+        <button id="mieiPrestiti" class="miei-prestiti">Mostra prestiti</button>
         <button id="Prenota" class="prenotation-button">Prenota</button>
-        <button id="cancella" class="cancellation-button">cancella</button>
-        <button id='mostra' class="show-button">mostra libri</button>
-        <button id='valuta' class="valutation-button">valuta libro</button>
-        <button id='abilita' class="abilitation-button">abilita utente</button>
+        <button id="cancella" class="cancellation-button">Cancella</button>
+        <button id="mostra" class="show-button">Mostra libri</button>
+        <button id="valuta" class="valutation-button">Valuta libro</button>
+        <button id="abilita" class="abilitation-button">Abilita utente</button>
     </div>
+    <script>
+        document.getElementById('Prenota').onclick = function() {
+            window.location.href = 'gestore.php?action=prenota';
+        };
+        document.getElementById('mostra').onclick = function() {
+            window.location.href = 'gestore.php?action=mostra';
+        };
+        document.getElementById('valuta').onclick = function() {
+            window.location.href = 'valuta_libro.php';
+        };
+        document.getElementById('cancella').onclick = function() {
+            window.location.href = 'gestore.php?action=cancella';
+        };
+        document.getElementById('mieiPrestiti').onclick = function() {
+            window.location.href = 'gestore.php?action=visualizza';
+        };
+        document.getElementById('abilita').onclick = function() {
+            window.location.href = 'abilita_utente.php';
+        };
+    </script>
 </body>
-<script>
-    let miei=document.getElementById('mieiPrestiti');
-    let prenota=document.getElementById('Prenota');
-    let mostra=document.getElementById('mostra');
-    let cancella=document.getElementById('cancella');
-    let abilita=document.getElementById('abilita');
-    // let valuta=document.getelementbyid('valuta');
-    // valuta.onclick=function(){
-    //     window.location.href='valuta_libro.php'
-    // }
-    prenota.onclick=function(){
-        window.location.href='gestore.php?action=prenota'
-    }
-    mostra.onclick=function(){
-        window.location.href='gestore.php?action=mostra'
-    }
-    valuta.onclick=function(){
-        window.location.href='valuta_libro.php'
-    }
-    cancella.onclick=function(){
-        window.location.href='gestore.php?action=cancella'
-    }
-    miei.onclick=function(){
-        window.location.href='gestore.php?action=visualizza'
-    }
-    abilita.onclick=function(){
-        window.location.href='abilita_utente.php'
-    }
-</script>
 </html>
