@@ -1,1 +1,2 @@
-BiblioTrack è un gestionale per enti bibliotecari semplice e convenienete, il quale permette una comoda gestione del catalogo, dei prestiti e un comodo accesso dell'utente.
+Bibliotrack è una soluzione web per le biblioteche, il sistema permette una comoda gestione dei prestiti, visualizzazione del catalogo e delle tendenza, nonchè la gestione del proprio personale account.
+Integrando il gestionale Bibliotrack , offerta aggiuntiva, si può comodamente gestire attraverso GUI il database locale, la soluzione necessita una personalizzazione durante l'installazione, il tecnico si occuperà di ognuno di questi aspetti.
