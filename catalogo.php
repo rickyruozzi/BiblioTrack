@@ -23,12 +23,12 @@
         header h1 {
             margin: 0;
             font-size: 36px;
-            cursor:pointer;
+            cursor: pointer;
         }
         header h3 {
             margin-top: 5px;
             font-size: 18px;
-            cursor:pointer;
+            cursor: pointer;
         }
         nav {
             background-color: #f90505;
@@ -93,16 +93,17 @@
     <div class="container">
         <div class="catalog-section">
             <h2>Catalogo</h2>
-            <div style="margin-bottom:5px;"><a href="visualizza_feedback.php">Feedback</a></div>
+            <div style="margin-bottom: 5px;"><a href="visualizza_feedback.php">Feedback</a></div>
             <table>
                 <thead>
                     <tr>
+                        <th>Id_libro</th>
                         <th>Titolo</th>
                         <th>Autore</th>
-                        <th>casa editrice</th>
-                        <th>anno pubblicazione</th>
-                        <th>collana</th>
-                        <th>genere</th>
+                        <th>Casa editrice</th>
+                        <th>Anno pubblicazione</th>
+                        <th>Collana</th>
+                        <th>Genere</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -120,17 +121,17 @@
                         die("Connessione fallita: " . $conn->connect_error);
                     }
 
-                    // Query per selezionare i prestiti
-                    $sql = "SELECT * FROM libri order by Titolo";
+                    // Query per selezionare i libri
+                    $sql = "SELECT * FROM libri ORDER BY Titolo";
                     $result = $conn->query($sql);
 
                     // Stampa dei risultati nella tabella
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
-                            echo "<tr><td>".$row["Titolo"]."</td><td>".$row["Autore"]."</td><td>".$row["Casa_editrice"]."</td><td>".$row["Anno_pubblicazione"]."</td><td>".$row["Collana"]."</td><td>".$row["Genere"]."</td></tr>";
+                            echo "<tr><td>".$row["PK_Id_libro"]."</td><td>".$row["Titolo"]."</td><td>".$row["Autore"]."</td><td>".$row["Casa_editrice"]."</td><td>".$row["Anno_pubblicazione"]."</td><td>".$row["Collana"]."</td><td>".$row["Genere"]."</td></tr>";
                         }
                     } else {
-                        echo "<tr><td colspan='5'>Nessun prestito trovato</td></tr>";
+                        echo "<tr><td colspan='7'>Nessun libro trovato</td></tr>";
                     }
                     $conn->close();
                     ?>
@@ -139,8 +140,8 @@
         </div>
     </div>
     <script>
-        let header= document.getElementById('header');
-        header.onclick=function() {
+        let header = document.getElementById('header');
+        header.onclick = function() {
             window.location.href = "index.html";
         }
     </script>
