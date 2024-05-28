@@ -130,7 +130,7 @@ table tbody tr:hover {
         <a href="catalogo.php">Catalogo</a>
         <a href="prestiti.html">Prestiti</a>
         <a href="tendenze.php">Tendenze</a>
-        <a href="eventi.html">eventi</a>
+        <a href="eventi.html">Eventi</a>
     </nav>
     <div class="container">
         <section class="catalog-section">
